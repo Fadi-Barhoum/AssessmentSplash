@@ -9,23 +9,18 @@ export class ServiceBusService {
   private mongoClient: MongoClient;
 
   constructor(connectionString: string, mongoConnectionString: string) {
-    // Initialize Service Bus client
     this.serviceBusClient = new ServiceBusClient(connectionString);
-
-    // Initialize MongoDB client with useUnifiedTopology option
     this.mongoClient = new MongoClient(mongoConnectionString);
     this.mongoClient.connect().then(() => console.log('Connected to MongoDB'));
   }
 
   async sendMessageToQueue(messageBody: any, queueName: string) {
-    // Create a sender for the specified queue
     const sender = this.serviceBusClient.createSender(queueName);
 
     try {
       // Create a message to send
       const message: ServiceBusMessage = {
         body: messageBody,
-        // Add any additional properties or headers as needed
       };
 
       // Send the message to the queue
@@ -56,8 +51,6 @@ export class ServiceBusService {
           await receiver.completeMessage(message);
         } catch (error) {
           console.error('Error processing message from queue:', queueName, error);
-
-          // Release message lock to make it available for processing again
           await receiver.abandonMessage(message);
         }
       },
@@ -78,7 +71,6 @@ export class ServiceBusService {
         messageId: messageId,
         body: payload,
         timestamp: new Date(),
-        // Add any additional transformations or preprocessing steps here
       };
   
       // Insert the transformed message into MongoDB

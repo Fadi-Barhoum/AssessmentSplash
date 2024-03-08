@@ -1,4 +1,3 @@
-// eventhub/eventhub.module.ts
 import { Module } from '@nestjs/common';
 import { EventHubService } from './services/eventhub.service';
 

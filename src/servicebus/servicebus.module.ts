@@ -1,4 +1,3 @@
-// src/servicebus/servicebus.module.ts
 import { Module } from '@nestjs/common';
 import { ServiceBusService } from './services/servicebus.service';
 

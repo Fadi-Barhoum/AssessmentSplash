@@ -1,4 +1,3 @@
-// src/some-service/some-service.service.ts
 import { Injectable } from '@nestjs/common';
 import { EventHubService } from '../eventhub/services/eventhub.service';
 

@@ -22,7 +22,6 @@ import { ErrorInterceptor } from './error.interceptor';
   providers: [
     AppService,
     ListenService,
-    // Provide the GlobalExceptionsFilter as a global filter
     {
       provide: APP_FILTER,
       useClass: GlobalExceptionsFilter,
